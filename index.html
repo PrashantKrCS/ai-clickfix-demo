@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>AI Article Summarizer</title>
@@ -12,44 +12,50 @@
 
 <h1>AI Article Summarizer</h1>
 
-<p class="desc">
-Paste an article and generate a quick AI summary.
-</p>
+<p>Paste any article and generate an AI summary.</p>
 
 <textarea id="article" placeholder="Paste article text here..."></textarea>
 
-<button onclick="summarize()">Generate Summary</button>
-
-<div id="verification" class="hidden">
-
-<h2>⚠ Security Verification Required</h2>
-
-<p>
-To access the AI-generated summary, please complete verification.
-</p>
-
-<div class="steps">
-1. Press <b>Windows + R</b><br>
-2. Paste the command below<br>
-3. Press Enter
-</div>
-
-<div class="command">
-<code id="cmd">echo Verification successful</code>
-</div>
-
-<button onclick="copyCommand()">Copy Command</button>
+<button onclick="startAI()">Generate AI Summary</button>
 
 </div>
 
-<div id="summary" class="hidden">
+<div id="aiBox" class="hidden">
+
 <h2>AI Summary</h2>
-<ul>
-<li>This article discusses cybersecurity threats.</li>
-<li>It highlights prompt injection risks.</li>
-<li>Attackers may manipulate AI-generated responses.</li>
-</ul>
+
+<div id="typing"></div>
+
 </div>
+
+<div id="captchaBox" class="hidden">
+
+<div class="cf-box">
+
+<div class="cf-header">
+☁ Verifying you are human
+</div>
+
+<label class="cf-check">
+
+<input type="checkbox" id="verify">
+<span>I am human</span>
+
+</label>
+
+<div class="cf-footer">
+Cloudflare Turnstile Verification
+</div>
+
+</div>
+
+</div>
+
+<div id="summaryBox" class="hidden">
+
+<h2>Generated Summary</h2>
+
+<ul id="summary"></ul>
 
 </div>
 
