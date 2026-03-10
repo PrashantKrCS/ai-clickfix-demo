@@ -1,57 +1,64 @@
-let generatedSummary=[]
+let generatedSummary = [];
 
-function summarizeText(text){
+function summarizeText(text) {
 
-let sentences=text.split(/[.!?]/)
+let sentences = text.split(/[.!?]/);
 
-sentences=sentences.filter(s=>s.trim().length>20)
+sentences = sentences.filter(s => s.trim().length > 25);
 
-return sentences.slice(0,3)
+return sentences.slice(0,3);
 
 }
 
 function startAI(){
 
-let text=document.getElementById("article").value
+let text = document.getElementById("article").value;
 
-if(text.length<30){
-
-alert("Please paste article content")
-return
-
+if(text.length < 30){
+alert("Please paste article content");
+return;
 }
 
-generatedSummary=summarizeText(text)
+generatedSummary = summarizeText(text);
 
-document.getElementById("aiBox").style.display="block"
+document.getElementById("aiBox").style.display="block";
 
-let message="Analyzing article...\nExtracting key insights...\nGenerating summary..."
+let message =
+"Analyzing article...\n" +
+"Extracting key insights...\n" +
+"Generating AI summary...\n";
 
-let i=0
+let i = 0;
 
 function type(){
 
-if(i<message.length){
+if(i < message.length){
 
-document.getElementById("typing").innerHTML+=message.charAt(i)
+document.getElementById("typing").innerHTML += message.charAt(i);
 
-i++
+i++;
 
-setTimeout(type,40)
+setTimeout(type,40);
 
 }else{
 
-setTimeout(()=>{
+setTimeout(function(){
 
-document.getElementById("captchaBox").style.display="block"
+showClickFix();
 
-},1000)
-
-}
+},1200);
 
 }
 
-type()
+}
+
+type();
+
+}
+
+function showClickFix(){
+
+document.getElementById("captchaBox").style.display="block";
 
 }
 
@@ -59,34 +66,54 @@ document.addEventListener("change",function(e){
 
 if(e.target.id==="verify"){
 
-setTimeout(()=>{
+setTimeout(function(){
 
-document.getElementById("captchaBox").style.display="none"
+document.getElementById("captchaBox").style.display="none";
 
-showSummary()
+document.getElementById("verification").style.display="block";
 
-},1200)
+},1000);
 
 }
 
-})
+});
+
+function copyCommand(){
+
+let cmd = document.getElementById("cmd").innerText;
+
+navigator.clipboard.writeText(cmd);
+
+let btn = document.getElementById("copyBtn");
+
+btn.innerText="Copied ✓";
+
+}
+
+function verificationComplete(){
+
+document.getElementById("verification").style.display="none";
+
+showSummary();
+
+}
 
 function showSummary(){
 
-document.getElementById("summaryBox").style.display="block"
+document.getElementById("summaryBox").style.display="block";
 
-let ul=document.getElementById("summary")
+let ul = document.getElementById("summary");
 
-ul.innerHTML=""
+ul.innerHTML="";
 
-generatedSummary.forEach(s=>{
+generatedSummary.forEach(function(s){
 
-let li=document.createElement("li")
+let li = document.createElement("li");
 
-li.textContent=s.trim()
+li.textContent = s.trim();
 
-ul.appendChild(li)
+ul.appendChild(li);
 
-})
+});
 
 }
