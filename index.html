@@ -1,3 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AI Article Summarizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Article Summarizer</h1>
+
+<p>Paste any article and generate an AI summary.</p>
+
+<textarea id="article" placeholder="Paste article text here..."></textarea>
+
+<button onclick="startAI()">Generate AI Summary</button>
+
+</div>
+
+<div id="aiBox" class="hidden">
+
+<h2>AI Summary</h2>
+
+<div id="typing"></div>
+
+</div>
+
+<div id="captchaBox" class="hidden">
+
 <div id="verification" class="hidden">
 
 <h2>Security Verification Required</h2>
@@ -23,3 +55,37 @@ To continue generating the AI summary, complete the verification step.
 <button onclick="verificationComplete()">I Completed Verification</button>
 
 </div>
+  
+<div class="cf-box">
+
+<div class="cf-header">
+☁ Verifying you are human
+</div>
+
+<label class="cf-check">
+
+<input type="checkbox" id="verify">
+<span>I am human</span>
+
+</label>
+
+<div class="cf-footer">
+Cloudflare Turnstile Verification
+</div>
+
+</div>
+
+</div>
+
+<div id="summaryBox" class="hidden">
+
+<h2>Generated Summary</h2>
+
+<ul id="summary"></ul>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
